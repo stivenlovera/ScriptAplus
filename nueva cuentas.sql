@@ -50,30 +50,27 @@ insert into
 values ('Pendiente'), ('Pagado'), ('Recibido');
 
 ##select de movimientos generales
-SELECT
-    a.id as `asientoId`,
-    ocp.`codigoOrden` as codigo,
-    ocp.`fechaCreacion` as fecha,
-    ocp.descripcion,
-    pv.`nombreProveedor` as para,
-    ocp.total as total,
-    ta.`nombreTipoAsiento` as metodoPago,
-    pc.`nombreCuenta`,
-    pc.codigo as codigoCuenta
-    pc.id as `PlanCuentaId`,
-    CONCAT(p.nombre, ' ', p.apellido) as realizado,
-    IF(apc.rol = 'haber', ocp.total, 0) as haber,
-    IF(apc.rol = 'debe', ocp.total, 0) as debe
+SELECT *
 FROM asiento as a
     INNER JOIN tipoasiento as ta on ta.id = a.`tipoasientoId`
     INNER JOIN asientovplancuenta as apc on apc.`asientoId` = a.id
     INNER JOIN vplancuenta as pc on apc.`VPlanCuentaId` = apc.`id`
-    INNER JOIN ordencompra as ocp on ocp.`asientoId` = a.id and ocp.`estadoId` = 2
-    INNER JOIN vproveedor as pv on ocp.`VProveedoreId` = pv.id
-    INNER JOIN usuario as usu on ocp.`usuarioId` = usu.`usuarioId`
-    INNER JOIN persona as p on p.`personaId` = usu.`personaId`;
+    LEFT JOIN ordencompra as ocp on ocp.`asientoId` = a.id and ocp.`estadoId` = 2
+    LEFT JOIN venta as v on v.`asientoId` = a.id and v.`estadoId` = 2;
 
 
 SELECT * FROM ordencompra;
 
-SELECT * FROM venta 
+SELECT *
+FROM venta
+insert into
+    parametro (
+        codigo_clasificador,
+        codigo_tipo_parametro,
+        descripcion
+    )
+values (
+        'demo',
+        'demo',
+        'Carnet de identidad'
+    );

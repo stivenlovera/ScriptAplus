@@ -464,3 +464,5 @@ CREATE TABLE
         `PlanCuentaId` int(11) NOT NULL,
         PRIMARY KEY (`id`)
     );
+
+##despliege de en estado

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: aplussistemaventa
 -- ------------------------------------------------------
--- Server version	8.0.30
+-- Server version	5.7.24
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `asiento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `asiento` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombreAsiento` text NOT NULL,
-  `tipoasientoId` int NOT NULL,
+  `tipoasientoId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,12 +48,12 @@ DROP TABLE IF EXISTS `asientovplancuenta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `asientovplancuenta` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `VPlanCuentaId` int NOT NULL,
-  `asientoId` int NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `VPlanCuentaId` int(11) NOT NULL,
+  `asientoId` int(11) NOT NULL,
   `rol` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,12 +74,12 @@ DROP TABLE IF EXISTS `atributo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `atributo` (
-  `atributoid` int NOT NULL AUTO_INCREMENT,
+  `atributoid` int(11) NOT NULL AUTO_INCREMENT,
   `etiqueta` varchar(200) NOT NULL,
   `tipo` varchar(50) NOT NULL,
-  `categoriaid` int DEFAULT NULL,
+  `categoriaid` int(11) DEFAULT NULL,
   PRIMARY KEY (`atributoid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,11 +100,11 @@ DROP TABLE IF EXISTS `atributos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `atributos` (
-  `productoid` int NOT NULL,
-  `atributoid` int NOT NULL,
+  `productoid` int(11) NOT NULL,
+  `atributoid` int(11) NOT NULL,
   `valor` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`productoid`,`atributoid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,12 +125,12 @@ DROP TABLE IF EXISTS `categoria`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categoria` (
-  `categoriaId` int NOT NULL AUTO_INCREMENT,
+  `categoriaId` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
-  `izq` int NOT NULL,
-  `der` int NOT NULL,
+  `izq` int(11) NOT NULL,
+  `der` int(11) NOT NULL,
   PRIMARY KEY (`categoriaId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,15 +151,15 @@ DROP TABLE IF EXISTS `cliente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cliente` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `codigo_cliente` varchar(255) DEFAULT NULL,
-  `codigo_tipo_documento_identidad` int DEFAULT NULL,
+  `codigo_tipo_documento_identidad` int(11) DEFAULT NULL,
   `complemento` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `nombre_razon_social` varchar(255) DEFAULT NULL,
   `numero_documento` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,12 +179,12 @@ DROP TABLE IF EXISTS `configuracion_asientos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `configuracion_asientos` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(250) NOT NULL,
-  `tipoasiento_id` int NOT NULL,
+  `tipoasiento_id` int(11) NOT NULL,
   `descripcion` varchar(512) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -205,13 +205,13 @@ DROP TABLE IF EXISTS `configuracionplancuenta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `configuracionplancuenta` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `cuentaClientes` int NOT NULL,
-  `cuentaProveedores` int NOT NULL,
-  `cuentaProducto` int NOT NULL,
-  `cuentaVendedores` int NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cuentaClientes` int(11) NOT NULL,
+  `cuentaProveedores` int(11) NOT NULL,
+  `cuentaProducto` int(11) NOT NULL,
+  `cuentaVendedores` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,18 +231,18 @@ DROP TABLE IF EXISTS `entradaalmacen`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entradaalmacen` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `ordenCompraId` int NOT NULL,
-  `VProductoId` int NOT NULL,
-  `VProveedoreId` int NOT NULL,
-  `cantidad` int NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ordenCompraId` int(11) NOT NULL,
+  `VProductoId` int(11) NOT NULL,
+  `VProveedoreId` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
   `precioCompra` decimal(10,2) NOT NULL,
   `precioTotal` decimal(10,2) NOT NULL,
   `fechaVencimiento` datetime NOT NULL,
   `lote` text NOT NULL,
-  `almacenId` int NOT NULL,
+  `almacenId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -262,10 +262,10 @@ DROP TABLE IF EXISTS `estadoordencompra`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `estadoordencompra` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombreEstadoOrdenCompra` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -286,10 +286,10 @@ DROP TABLE IF EXISTS `estadoventa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `estadoventa` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombreEstadoVenta` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -298,6 +298,7 @@ CREATE TABLE `estadoventa` (
 
 LOCK TABLES `estadoventa` WRITE;
 /*!40000 ALTER TABLE `estadoventa` DISABLE KEYS */;
+INSERT INTO `estadoventa` VALUES (1,'cotizacion'),(2,'vendido');
 /*!40000 ALTER TABLE `estadoventa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -309,18 +310,18 @@ DROP TABLE IF EXISTS `movimiento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `movimiento` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombreAsiento` text NOT NULL,
-  `tipoAsientoId` int NOT NULL,
-  `asientoId` int NOT NULL,
+  `tipoAsientoId` int(11) NOT NULL,
+  `asientoId` int(11) NOT NULL,
   `fechaMovimiento` datetime NOT NULL,
-  `VPlancuentaId` int NOT NULL,
+  `VPlancuentaId` int(11) NOT NULL,
   `nombrePlanCuenta` text NOT NULL,
   `descripcion` text NOT NULL,
   `debe` decimal(10,2) NOT NULL,
   `haber` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -341,18 +342,18 @@ DROP TABLE IF EXISTS `ordencompra`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ordencompra` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `codigoOrden` text NOT NULL,
-  `VProveedoreId` int NOT NULL,
+  `VProveedoreId` int(11) NOT NULL,
   `totalLiteral` text NOT NULL,
   `descripcion` text NOT NULL,
   `total` decimal(10,2) NOT NULL,
   `fechaCreacion` datetime NOT NULL,
-  `usuarioId` int NOT NULL,
-  `asientoId` int NOT NULL,
-  `estadoId` int NOT NULL,
+  `usuarioId` int(11) NOT NULL,
+  `asientoId` int(11) NOT NULL,
+  `estadoId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -373,14 +374,14 @@ DROP TABLE IF EXISTS `ordencompraproducto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ordencompraproducto` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `VProductoId` int NOT NULL,
-  `cantidad` int NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `VProductoId` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
   `precioCompra` decimal(10,2) NOT NULL,
   `precioTotal` decimal(10,2) NOT NULL,
-  `ordenCompraId` int NOT NULL,
+  `ordenCompraId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -401,12 +402,12 @@ DROP TABLE IF EXISTS `parametro`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `parametro` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `codigo_clasificador` varchar(255) NOT NULL,
   `codigo_tipo_parametro` varchar(255) DEFAULT NULL,
   `descripcion` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1111 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=1111 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -427,11 +428,11 @@ DROP TABLE IF EXISTS `permiso`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `permiso` (
-  `permisoId` int NOT NULL AUTO_INCREMENT,
+  `permisoId` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `ruta` varchar(400) NOT NULL,
   PRIMARY KEY (`permisoId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -452,9 +453,9 @@ DROP TABLE IF EXISTS `permisos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `permisos` (
-  `permisoId` int NOT NULL,
-  `rolId` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `permisoId` int(11) NOT NULL,
+  `rolId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -475,7 +476,7 @@ DROP TABLE IF EXISTS `persona`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `persona` (
-  `personaId` int NOT NULL AUTO_INCREMENT,
+  `personaId` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `apellido` varchar(100) NOT NULL,
   `direccion` varchar(300) NOT NULL,
@@ -483,9 +484,9 @@ CREATE TABLE `persona` (
   `email` varchar(100) NOT NULL,
   `telefono` varchar(20) NOT NULL,
   `ci` varchar(20) NOT NULL,
-  `habilitado` tinyint NOT NULL,
+  `habilitado` tinyint(4) NOT NULL,
   PRIMARY KEY (`personaId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -494,7 +495,7 @@ CREATE TABLE `persona` (
 
 LOCK TABLES `persona` WRITE;
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
-INSERT INTO `persona` VALUES (1,'Ali Stiven','Lovera Huarachi','no registrado','1991-01-01','stivenlovera@gmail.com','75679775','8963497',1),(2,'Mauricio','Peres','no registrado','1994-01-05','mau@gmail.com','66989898','9987778',1);
+INSERT INTO `persona` VALUES (1,'Ali Stiven','Lovera Huarachi','no registrado','1991-01-01','stivenlovera@gmail.com','75679775','8963497',1),(2,'Mauricio','Peres','no registrado','1994-01-05','mau@gmail.com','66989898','9987778',1),(3,'Ali Stiven','Lovera Huarachi','no registrado','1991-01-01','stivenlovera@gmail.com','75679775','8963497',1);
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -506,11 +507,11 @@ DROP TABLE IF EXISTS `productomaestro`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `productomaestro` (
-  `productomaestroid` int NOT NULL AUTO_INCREMENT,
+  `productomaestroid` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(200) NOT NULL,
-  `categoriaid` int DEFAULT NULL,
+  `categoriaid` int(11) DEFAULT NULL,
   PRIMARY KEY (`productomaestroid`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -531,11 +532,11 @@ DROP TABLE IF EXISTS `rol`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `rol` (
-  `rolId` int NOT NULL AUTO_INCREMENT,
+  `rolId` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(20) NOT NULL,
   PRIMARY KEY (`rolId`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -556,11 +557,11 @@ DROP TABLE IF EXISTS `roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `roles` (
-  `rolesId` int NOT NULL AUTO_INCREMENT,
-  `usuarioId` int NOT NULL,
-  `rolId` int NOT NULL,
+  `rolesId` int(11) NOT NULL AUTO_INCREMENT,
+  `usuarioId` int(11) NOT NULL,
+  `rolId` int(11) NOT NULL,
   PRIMARY KEY (`rolesId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -581,17 +582,17 @@ DROP TABLE IF EXISTS `salidaalmacen`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `salidaalmacen` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `ventaId` int NOT NULL,
-  `VProductoId` int NOT NULL,
-  `VProveedoreId` int NOT NULL,
-  `cantidad` int NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ventaId` int(11) NOT NULL,
+  `VProductoId` int(11) NOT NULL,
+  `VProveedoreId` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
   `precioCompra` decimal(10,2) NOT NULL,
   `precioTotal` decimal(10,2) NOT NULL,
   `lote` text NOT NULL,
-  `almacenId` int NOT NULL,
+  `almacenId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -611,15 +612,15 @@ DROP TABLE IF EXISTS `stockalmacen`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `stockalmacen` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `VProveedoreId` int NOT NULL,
-  `VProductoId` int NOT NULL,
-  `cantidad` int NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `VProveedoreId` int(11) NOT NULL,
+  `VProductoId` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
   `precioUnitario` decimal(10,2) NOT NULL,
   `precioTotal` decimal(10,2) NOT NULL,
-  `stockAlert` int NOT NULL,
+  `stockAlert` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -639,16 +640,16 @@ DROP TABLE IF EXISTS `sucursal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sucursal` (
-  `id` int NOT NULL,
-  `codigo` int NOT NULL,
+  `id` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL,
   `departamento` varchar(255) DEFAULT NULL,
   `direccion` varchar(255) DEFAULT NULL,
   `municipio` varchar(255) DEFAULT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   `telefono` varchar(255) DEFAULT '0',
-  `id_empresa` int NOT NULL,
+  `id_empresa` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -668,10 +669,10 @@ DROP TABLE IF EXISTS `tipoasiento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tipoasiento` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombreTipoAsiento` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -692,14 +693,14 @@ DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
-  `usuarioId` int NOT NULL AUTO_INCREMENT,
+  `usuarioId` int(11) NOT NULL AUTO_INCREMENT,
   `usuario` varchar(30) DEFAULT NULL,
   `password` varchar(64) DEFAULT NULL,
-  `personaId` int NOT NULL,
+  `personaId` int(11) NOT NULL,
   `habilitado` tinyint(1) NOT NULL,
   PRIMARY KEY (`usuarioId`),
   UNIQUE KEY `usuario` (`usuario`,`habilitado`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -720,12 +721,12 @@ DROP TABLE IF EXISTS `valmacen`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `valmacen` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `codigoAlmacen` text NOT NULL,
   `dirrecion` text NOT NULL,
   `nombreAlmacen` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -745,17 +746,17 @@ DROP TABLE IF EXISTS `vclientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vclientes` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `codigoCliente` text NOT NULL,
   `numeroDocumento` text NOT NULL,
   `nombreCompletoCliente` text NOT NULL,
   `correoElectronico` text NOT NULL,
   `dirrecion` text NOT NULL,
   `telefono` text NOT NULL,
-  `codigoTipoDocumentoIdentidad` int DEFAULT NULL,
+  `codigoTipoDocumentoIdentidad` int(11) DEFAULT NULL,
   `complemento` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -776,20 +777,20 @@ DROP TABLE IF EXISTS `venta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `venta` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `codigoVenta` text NOT NULL,
-  `VClienteId` int NOT NULL,
+  `VClienteId` int(11) NOT NULL,
   `totalLiteral` text NOT NULL,
   `descripcion` text NOT NULL,
   `total` decimal(10,2) NOT NULL,
   `fechaCreacion` datetime NOT NULL,
-  `usuarioId` int NOT NULL,
+  `usuarioId` int(11) NOT NULL,
   `nit` text NOT NULL,
   `telefono` text NOT NULL,
-  `asientoId` int NOT NULL,
-  `estadoId` int NOT NULL,
+  `asientoId` int(11) NOT NULL,
+  `estadoId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -798,7 +799,7 @@ CREATE TABLE `venta` (
 
 LOCK TABLES `venta` WRITE;
 /*!40000 ALTER TABLE `venta` DISABLE KEYS */;
-INSERT INTO `venta` VALUES (1,'vent#00',1,'cuatro mil ochocientos','venta de prueba manual',4800.00,'2023-08-02 00:00:00',1,'','75988989',2,2);
+INSERT INTO `venta` VALUES (1,'vent#00',1,'cuatro mil ochocientos','venta de prueba manual',4800.00,'2023-08-02 00:00:00',1,'','75988989',2,2),(31,'vent0031',1,'Y Y DOS MIL OCHOCIENTOS OCHENTA','fggfh',2880.00,'2023-08-05 00:00:00',1,'8963598','75679795',2,2),(32,'vent0032',1,'SETENTA Y NUEVE MIL DOSCIENTOS','demo',79200.00,'2023-08-05 19:18:27',1,'8963598','75679795',2,1),(33,'vent0033',1,'Y Y SIETE MIL DOSCIENTOS','fgsdgsdg',7200.00,'2023-08-05 00:00:00',1,'8963598','75679795',2,2),(34,'vent0034',1,'MIL DOSCIENTOS','otra venta de ejemplo',1200.00,'2023-08-05 00:00:00',1,'8963598','75679795',2,2),(35,'vent0035',1,'SETECIENTOS CINCUENTA','efsfddfs',750.00,'2023-08-05 00:00:00',1,'8963598','75679795',2,2),(36,'vent0036',1,'ONCE MIL QUINIENTOS VEINTE','gdfgdfgdfg',11520.00,'2023-08-05 00:00:00',1,'8963598','75679795',2,2),(37,'vent0037',1,'SETECIENTOS CINCUENTA','jghgjhj',750.00,'2023-08-05 00:00:00',1,'8963598','75679795',2,2),(38,'vent0038',1,'MIL DOSCIENTOS','dsfsfd',1200.00,'2023-08-05 00:00:00',1,'8963598','75679795',2,2),(39,'vent0039',1,'SETECIENTOS CINCUENTA','dssfsdf',750.00,'2023-08-05 19:32:52',1,'8963598','75679795',2,1),(40,'vent0040',1,'CUATROCIENTOS CINCUENTA','gsgsdf',450.00,'2023-08-05 19:34:55',1,'8963598','75679795',2,1),(41,'vent0041',1,'TREINTA Y NUEVE MIL DOSCIENTOS','dfgdgfg',39200.00,'2023-08-05 00:00:00',1,'8963598','75679795',2,2),(42,'vent0042',1,'CATORCE MIL SETECIENTOS','tyryrt',14700.00,'2023-08-05 00:00:00',1,'8963598','75679795',2,2),(43,'vent0043',1,'TRESCIENTOS','GBFDGFGDF',300.00,'2023-08-05 00:00:00',1,'8963598','75679795',2,2);
 /*!40000 ALTER TABLE `venta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -810,14 +811,14 @@ DROP TABLE IF EXISTS `ventaproducto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ventaproducto` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `VProductoId` int NOT NULL,
-  `cantidad` int NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `VProductoId` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
   `precioUnitario` decimal(10,2) NOT NULL,
   `precioTotal` decimal(10,2) NOT NULL,
-  `ventaId` int NOT NULL,
+  `ventaId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -826,7 +827,7 @@ CREATE TABLE `ventaproducto` (
 
 LOCK TABLES `ventaproducto` WRITE;
 /*!40000 ALTER TABLE `ventaproducto` DISABLE KEYS */;
-INSERT INTO `ventaproducto` VALUES (1,1,1,4900.00,4900.00,1);
+INSERT INTO `ventaproducto` VALUES (1,1,1,4900.00,4900.00,1),(31,2,2,1440.00,2880.00,31),(32,2,55,1440.00,79200.00,32),(33,2,5,1440.00,7200.00,33),(34,3,8,150.00,1200.00,34),(35,3,5,150.00,750.00,35),(36,2,8,1440.00,11520.00,36),(37,3,5,150.00,750.00,37),(38,3,8,150.00,1200.00,38),(39,3,5,150.00,750.00,39),(40,3,1,150.00,150.00,40),(41,3,2,150.00,300.00,40),(42,1,8,4900.00,39200.00,41),(43,1,3,4900.00,14700.00,42),(44,3,2,150.00,300.00,43);
 /*!40000 ALTER TABLE `ventaproducto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -838,10 +839,10 @@ DROP TABLE IF EXISTS `vmoneda`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vmoneda` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombreMoneda` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -861,10 +862,10 @@ DROP TABLE IF EXISTS `vnivel`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vnivel` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombreNivel` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -884,18 +885,18 @@ DROP TABLE IF EXISTS `vplanclientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vplanclientes` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `codigo` text NOT NULL,
   `nombreCuenta` text NOT NULL,
   `moneda` text NOT NULL,
   `valor` decimal(20,2) NOT NULL,
   `codigoIdentificador` text NOT NULL,
-  `nivel` int NOT NULL,
+  `nivel` int(11) NOT NULL,
   `debe` decimal(20,2) NOT NULL,
   `haber` decimal(20,2) NOT NULL,
-  `VPlanCuentaId` int NOT NULL,
+  `VPlanCuentaId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -915,18 +916,18 @@ DROP TABLE IF EXISTS `vplancuenta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vplancuenta` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `codigo` text NOT NULL,
   `nombreCuenta` text NOT NULL,
   `moneda` text NOT NULL,
   `valor` decimal(20,2) NOT NULL,
   `codigoIdentificador` text NOT NULL,
-  `nivel` int NOT NULL,
+  `nivel` int(11) NOT NULL,
   `debe` decimal(20,2) NOT NULL,
   `haber` decimal(20,2) NOT NULL,
-  `VPlanCuentaId` int NOT NULL,
+  `VPlanCuentaId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -947,18 +948,18 @@ DROP TABLE IF EXISTS `vplanproductos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vplanproductos` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `codigo` text NOT NULL,
   `nombreCuenta` text NOT NULL,
   `moneda` text NOT NULL,
   `valor` decimal(20,2) NOT NULL,
   `codigoIdentificador` text NOT NULL,
-  `nivel` int NOT NULL,
+  `nivel` int(11) NOT NULL,
   `debe` decimal(20,2) NOT NULL,
   `haber` decimal(20,2) NOT NULL,
-  `VPlanCuentaId` int NOT NULL,
+  `VPlanCuentaId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -978,18 +979,18 @@ DROP TABLE IF EXISTS `vplanproveedores`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vplanproveedores` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `codigo` text NOT NULL,
   `nombreCuenta` text NOT NULL,
   `moneda` text NOT NULL,
   `valor` decimal(20,2) NOT NULL,
   `codigoIdentificador` text NOT NULL,
-  `nivel` int NOT NULL,
+  `nivel` int(11) NOT NULL,
   `debe` decimal(20,2) NOT NULL,
   `haber` decimal(20,2) NOT NULL,
-  `VPlanCuentaId` int NOT NULL,
+  `VPlanCuentaId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1009,7 +1010,7 @@ DROP TABLE IF EXISTS `vproducto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vproducto` (
-  `productoid` int NOT NULL AUTO_INCREMENT,
+  `productoid` int(11) NOT NULL AUTO_INCREMENT,
   `codigoProducto` text NOT NULL,
   `codigoBarra` text NOT NULL,
   `nombreProducto` text NOT NULL,
@@ -1018,9 +1019,9 @@ CREATE TABLE `vproducto` (
   `PrecioVentaMin` decimal(10,0) NOT NULL,
   `utilidadMax` decimal(10,0) NOT NULL,
   `PrecioVentaMax` decimal(10,0) NOT NULL,
-  `productomaestroid` int DEFAULT NULL,
+  `productomaestroid` int(11) DEFAULT NULL,
   PRIMARY KEY (`productoid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1041,11 +1042,11 @@ DROP TABLE IF EXISTS `vproductoimagenes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vproductoimagenes` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` text NOT NULL,
-  `VproductoId` int NOT NULL,
+  `VproductoId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1066,16 +1067,16 @@ DROP TABLE IF EXISTS `vproveedor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vproveedor` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nit` varchar(250) NOT NULL,
   `codigoProveedor` text NOT NULL,
   `nombreProveedor` text NOT NULL,
   `dirrecion` text NOT NULL,
   `telefono` text NOT NULL,
   `contacto` text NOT NULL,
-  `PlanCuentaId` int NOT NULL,
+  `PlanCuentaId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1176,4 +1177,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-04 18:08:11
+-- Dump completed on 2023-08-05 20:50:56

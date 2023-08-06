@@ -78,4 +78,7 @@ SELECT
 FROM
     vwmovimiento_generales as vwg;
 
-    select * from movimiento_general_cuenta
+    select * from movimiento_general_cuenta;
+
+
+SELECT * FROM venta LEFT JOIN ventaproducto on venta.id=ventaproducto.`ventaId` WHERE  ventaproducto.VProductoId=NULL

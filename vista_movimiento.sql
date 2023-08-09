@@ -1,4 +1,4 @@
--- Active: 1679545701306@@127.0.0.1@3306@aplussistemaventa
+-- Active: 1687829054607@@127.0.0.1@3306@aplussistemaventa
 --VISTAS
 -- movimiento general
 DROP VIEW IF EXISTS vwmovimiento_cuenta;

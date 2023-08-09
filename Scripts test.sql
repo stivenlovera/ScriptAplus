@@ -82,3 +82,8 @@ FROM
 
 
 SELECT * FROM venta LEFT JOIN ventaproducto on venta.id=ventaproducto.`ventaId` WHERE  ventaproducto.VProductoId=NULL
+
+
+
+ALTER TABLE ordencompraproducto
+ADD COLUMN almacenId INT NULL

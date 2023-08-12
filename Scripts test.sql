@@ -1,4 +1,4 @@
--- Active: 1687829054607@@127.0.0.1@3306@aplussistemaventa
+-- Active: 1679545701306@@127.0.0.1@3306@aplussistemaventa
 
 -- Active: 1687829054607@@127.0.0.1@3306@aplussistemaventa-- Active: 1687829054607@@127.0.0.1@3306@aplussistemaventa-- Active: 1687829054607@@127.0.0.1@3306@aplussistemaventa-- Active: 1687829054607@@127.0.0.1@3306@aplussistemaventa-- Active: 1687829054607@@127.0.0.1@3306@aplussistemaventa
 
@@ -78,12 +78,30 @@ SELECT
 FROM
     vwmovimiento_generales as vwg;
 
-    select * from movimiento_general_cuenta;
+select * from movimiento_general_cuenta;
 
-
-SELECT * FROM venta LEFT JOIN ventaproducto on venta.id=ventaproducto.`ventaId` WHERE  ventaproducto.VProductoId=NULL
-
-
-
+SELECT *
+FROM venta
+    LEFT JOIN ventaproducto on venta.id = ventaproducto.`ventaId`
+WHERE
+    ventaproducto.VProductoId = NULL
+ALTER TABLE
+    ordencompraproducto
+ADD COLUMN almacenId INT NULL:
 ALTER TABLE ventaproducto
-ADD COLUMN almacenId INT NULL
+ADD COLUMN almacenId INT NULL;
+
+DROP TABLE IF EXISTS empresa;
+
+CREATE TABLE
+    `empresa` (
+        `id` int NOT NULL AUTO_INCREMENT,
+        `nombreEmpresa` varchar(250) NOT NULL,
+        `direccion` int NOT NULL,
+        `usuario_id` varchar(250) NOT NULL,
+        `email` varchar(250) NOT NULL,
+        `telefono` varchar(250) NOT NULL,
+        `dominio` varchar(250) NOT NULL,
+        `facturacion` INT(1) NOT NULL,
+        PRIMARY KEY (`id`)
+    )

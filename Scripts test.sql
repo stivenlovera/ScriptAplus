@@ -97,8 +97,8 @@ CREATE TABLE
     `empresa` (
         `id` int NOT NULL AUTO_INCREMENT,
         `nombreEmpresa` varchar(250) NOT NULL,
-        `direccion` int NOT NULL,
-        `usuario_id` varchar(250) NOT NULL,
+        `direccion` varchar(250) NOT NULL,
+        `usuario_id` INT NOT NULL,
         `email` varchar(250) NOT NULL,
         `telefono` varchar(250) NOT NULL,
         `dominio` varchar(250) NOT NULL,

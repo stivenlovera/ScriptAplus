@@ -321,7 +321,7 @@ CREATE TABLE `movimiento` (
   `debe` decimal(10,2) NOT NULL,
   `haber` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -330,8 +330,35 @@ CREATE TABLE `movimiento` (
 
 LOCK TABLES `movimiento` WRITE;
 /*!40000 ALTER TABLE `movimiento` DISABLE KEYS */;
-INSERT INTO `movimiento` VALUES (1,'con factura',2,1,'2023-07-29 00:00:00',1,'Cuenta por pagar','demo5',0.00,500.00),(2,'con factura',2,1,'2023-08-02 00:00:00',1,'Cuenta por pagar','Esto es una compra',0.00,9000.00);
+INSERT INTO `movimiento` VALUES (1,'con factura',2,1,'2023-07-29 00:00:00',1,'Cuenta por pagar','demo5',0.00,500.00),(2,'con factura',2,1,'2023-08-02 00:00:00',1,'Cuenta por pagar','Esto es una compra',0.00,9000.00),(3,'con factura',2,1,'2023-08-09 01:18:53',1,'Cuenta por pagar','demostracion',0.00,2000.00),(4,'con factura',2,1,'2023-08-09 01:18:53',3,'Cuenta derivada de pagar','demostracion',2000.00,0.00);
 /*!40000 ALTER TABLE `movimiento` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `movimientoalmacen`
+--
+
+DROP TABLE IF EXISTS `movimientoalmacen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `movimientoalmacen` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `productoId` int(11) NOT NULL,
+  `entradaId` int(11) NOT NULL,
+  `salidaId` int(11) NOT NULL,
+  `fecha` datetime DEFAULT NULL,
+  `cantidad` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `movimientoalmacen`
+--
+
+LOCK TABLES `movimientoalmacen` WRITE;
+/*!40000 ALTER TABLE `movimientoalmacen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `movimientoalmacen` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -353,7 +380,7 @@ CREATE TABLE `ordencompra` (
   `asientoId` int(11) NOT NULL,
   `estadoId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -362,7 +389,7 @@ CREATE TABLE `ordencompra` (
 
 LOCK TABLES `ordencompra` WRITE;
 /*!40000 ALTER TABLE `ordencompra` DISABLE KEYS */;
-INSERT INTO `ordencompra` VALUES (7,'OC#6',1,'QUINIENTOS','demo',500.00,'2023-07-28 00:00:00',1,1,1),(9,'OC#7',1,'Y Y SIETE MIL OCHOCIENTOS','demo',7800.00,'2023-07-28 00:00:00',1,1,1),(16,'OC#9',1,'Y Y DOS MIL SEISCIENTOS','demo',2600.00,'2023-07-29 00:00:00',1,1,1),(17,'OC#16',1,'Y Y TRES MIL DOSCIENTOS','demo2 ',3200.00,'2023-07-29 00:00:00',1,1,1),(18,'OC#17',1,'Y Y CINCO MIL','demo3',5000.00,'2023-07-29 00:00:00',1,1,1),(19,'OC#18',1,'QUINIENTOS','demo5',500.00,'2023-07-29 00:00:00',1,1,2),(20,'OC#19',1,'Y Y NUEVE MIL','Esto es una compra',9000.00,'2023-08-02 00:00:00',1,1,2);
+INSERT INTO `ordencompra` VALUES (7,'OC#6',1,'QUINIENTOS','demo',500.00,'2023-07-28 00:00:00',1,1,1),(9,'OC#7',1,'Y Y SIETE MIL OCHOCIENTOS','demo',7800.00,'2023-07-28 00:00:00',1,1,1),(16,'OC#9',1,'Y Y DOS MIL SEISCIENTOS','demo',2600.00,'2023-07-29 00:00:00',1,1,1),(17,'OC#16',1,'Y Y TRES MIL DOSCIENTOS','demo2 ',3200.00,'2023-07-29 00:00:00',1,1,1),(18,'OC#17',1,'Y Y CINCO MIL','demo3',5000.00,'2023-07-29 00:00:00',1,1,1),(19,'OC#18',1,'QUINIENTOS','demo5',500.00,'2023-07-29 00:00:00',1,1,2),(20,'OC#19',1,'Y Y NUEVE MIL','Esto es una compra',9000.00,'2023-08-02 00:00:00',1,1,2),(22,'OC#21',1,'Y Y DOS MIL','Prueba de demostracion',2000.00,'2023-08-08 00:00:00',1,2,1),(23,'OC#22',1,'Y Y DOS MIL','Prueba de demostracion',2000.00,'2023-08-08 00:00:00',1,2,1),(24,'OC#23',1,'Y Y DOS MIL','demostracion',2000.00,'2023-08-08 00:00:00',1,1,1),(25,'OC#24',1,'Y Y DOS MIL','demostracion',2000.00,'2023-08-08 00:00:00',1,1,1),(26,'OC#25',1,'Y Y DOS MIL','demostracion',2000.00,'2023-08-08 00:00:00',1,1,2);
 /*!40000 ALTER TABLE `ordencompra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -380,8 +407,9 @@ CREATE TABLE `ordencompraproducto` (
   `precioCompra` decimal(10,2) NOT NULL,
   `precioTotal` decimal(10,2) NOT NULL,
   `ordenCompraId` int(11) NOT NULL,
+  `almacenId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -390,7 +418,7 @@ CREATE TABLE `ordencompraproducto` (
 
 LOCK TABLES `ordencompraproducto` WRITE;
 /*!40000 ALTER TABLE `ordencompraproducto` DISABLE KEYS */;
-INSERT INTO `ordencompraproducto` VALUES (1,0,20,2000.00,40000.00,1),(2,0,10,7444.00,74440.00,1),(3,0,5,249.00,1245.00,2),(4,0,5,249.00,1245.00,3),(5,1,5,100.00,500.00,4),(6,1,5,100.00,500.00,5),(7,1,5,100.00,500.00,6),(8,1,5,100.00,500.00,7),(9,2,5,5.00,25.00,8),(10,1,15,520.00,7800.00,9),(11,3,5,200.00,1000.00,14),(12,1,5,520.00,2600.00,16),(13,1,8,400.00,3200.00,17),(14,2,50,100.00,5000.00,18),(15,2,5,100.00,500.00,19),(16,1,9,1000.00,9000.00,20);
+INSERT INTO `ordencompraproducto` VALUES (1,0,20,2000.00,40000.00,1,NULL),(2,0,10,7444.00,74440.00,1,NULL),(3,0,5,249.00,1245.00,2,NULL),(4,0,5,249.00,1245.00,3,NULL),(5,1,5,100.00,500.00,4,NULL),(6,1,5,100.00,500.00,5,NULL),(7,1,5,100.00,500.00,6,NULL),(8,1,5,100.00,500.00,7,NULL),(9,2,5,5.00,25.00,8,NULL),(10,1,15,520.00,7800.00,9,NULL),(11,3,5,200.00,1000.00,14,NULL),(12,1,5,520.00,2600.00,16,NULL),(13,1,8,400.00,3200.00,17,NULL),(14,2,50,100.00,5000.00,18,NULL),(15,2,5,100.00,500.00,19,NULL),(16,1,9,1000.00,9000.00,20,NULL),(17,1,2,1000.00,2000.00,26,NULL);
 /*!40000 ALTER TABLE `ordencompraproducto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -726,7 +754,7 @@ CREATE TABLE `valmacen` (
   `dirrecion` text NOT NULL,
   `nombreAlmacen` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -735,6 +763,7 @@ CREATE TABLE `valmacen` (
 
 LOCK TABLES `valmacen` WRITE;
 /*!40000 ALTER TABLE `valmacen` DISABLE KEYS */;
+INSERT INTO `valmacen` VALUES (1,'alm-1','Zona la ramada av isabel catolica','Ramada - isabel catolica'),(2,'alm-2','av lujan #3454','Lujan'),(3,'alm-3','plan 3000, calle chavez  zona mechero','Plan 3000');
 /*!40000 ALTER TABLE `valmacen` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -817,6 +846,7 @@ CREATE TABLE `ventaproducto` (
   `precioUnitario` decimal(10,2) NOT NULL,
   `precioTotal` decimal(10,2) NOT NULL,
   `ventaId` int(11) NOT NULL,
+  `almacenId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -827,7 +857,7 @@ CREATE TABLE `ventaproducto` (
 
 LOCK TABLES `ventaproducto` WRITE;
 /*!40000 ALTER TABLE `ventaproducto` DISABLE KEYS */;
-INSERT INTO `ventaproducto` VALUES (1,1,1,4900.00,4900.00,1),(31,2,2,1440.00,2880.00,31),(32,2,55,1440.00,79200.00,32),(33,2,5,1440.00,7200.00,33),(34,3,8,150.00,1200.00,34),(35,3,5,150.00,750.00,35),(36,2,8,1440.00,11520.00,36),(37,3,5,150.00,750.00,37),(38,3,8,150.00,1200.00,38),(39,3,5,150.00,750.00,39),(40,3,1,150.00,150.00,40),(41,3,2,150.00,300.00,40),(42,1,8,4900.00,39200.00,41),(43,1,3,4900.00,14700.00,42),(44,3,2,150.00,300.00,43);
+INSERT INTO `ventaproducto` VALUES (1,1,1,4900.00,4900.00,1,NULL),(31,2,2,1440.00,2880.00,31,NULL),(32,2,55,1440.00,79200.00,32,NULL),(33,2,5,1440.00,7200.00,33,NULL),(34,3,8,150.00,1200.00,34,NULL),(35,3,5,150.00,750.00,35,NULL),(36,2,8,1440.00,11520.00,36,NULL),(37,3,5,150.00,750.00,37,NULL),(38,3,8,150.00,1200.00,38,NULL),(39,3,5,150.00,750.00,39,NULL),(40,3,1,150.00,150.00,40,NULL),(41,3,2,150.00,300.00,40,NULL),(42,1,8,4900.00,39200.00,41,NULL),(43,1,3,4900.00,14700.00,42,NULL),(44,3,2,150.00,300.00,43,NULL);
 /*!40000 ALTER TABLE `ventaproducto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1145,7 +1175,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vwmovimiento_cuenta` AS select `a`.`id` AS `asientoId`,`ocp`.`codigoOrden` AS `codigo`,`ocp`.`fechaCreacion` AS `fecha`,`ocp`.`descripcion` AS `descripcion`,`pv`.`nombreProveedor` AS `para`,`ocp`.`total` AS `total`,`ta`.`nombreTipoAsiento` AS `metodoPago`,`pc`.`nombreCuenta` AS `nombreCuenta`,`pc`.`codigo` AS `codigoCuenta`,`pc`.`id` AS `PlanCuentaId`,concat(`p`.`nombre`,' ',`p`.`apellido`) AS `realizado`,if((`apc`.`rol` = 'haber'),`ocp`.`total`,0) AS `haber`,if((`apc`.`rol` = 'debe'),`ocp`.`total`,0) AS `debe` from (((((((`asiento` `a` join `tipoasiento` `ta` on((`ta`.`id` = `a`.`tipoasientoId`))) join `asientovplancuenta` `apc` on((`apc`.`asientoId` = `a`.`id`))) join `vplancuenta` `pc` on((`pc`.`id` = `apc`.`VPlanCuentaId`))) join `ordencompra` `ocp` on(((`ocp`.`asientoId` = `a`.`id`) and (`ocp`.`estadoId` = 2)))) join `vproveedor` `pv` on((`ocp`.`VProveedoreId` = `pv`.`id`))) join `usuario` `usu` on((`ocp`.`usuarioId` = `usu`.`usuarioId`))) join `persona` `p` on((`p`.`personaId` = `usu`.`personaId`))) union all select `a`.`id` AS `asientoId`,`v`.`codigoVenta` AS `codigo`,`v`.`fechaCreacion` AS `fecha`,`v`.`descripcion` AS `descripcion`,`vc`.`nombreCompletoCliente` AS `para`,`v`.`total` AS `total`,`ta`.`nombreTipoAsiento` AS `metodoPago`,`pc`.`nombreCuenta` AS `nombreCuenta`,`pc`.`codigo` AS `codigoCuenta`,`pc`.`id` AS `PlanCuentaId`,concat(`p`.`nombre`,' ',`p`.`apellido`) AS `realizado`,if((`apc`.`rol` = 'haber'),`v`.`total`,0) AS `haber`,if((`apc`.`rol` = 'debe'),`v`.`total`,0) AS `debe` from (((((((`asiento` `a` join `tipoasiento` `ta` on((`ta`.`id` = `a`.`tipoasientoId`))) join `asientovplancuenta` `apc` on((`apc`.`asientoId` = `a`.`id`))) join `vplancuenta` `pc` on((`pc`.`id` = `apc`.`VPlanCuentaId`))) join `venta` `v` on(((`v`.`asientoId` = `a`.`id`) and (`v`.`estadoId` = 2)))) join `vclientes` `vc` on((`v`.`VClienteId` = `vc`.`id`))) join `usuario` `usu` on((`v`.`usuarioId` = `usu`.`usuarioId`))) join `persona` `p` on((`p`.`personaId` = `usu`.`personaId`))) */;
+/*!50001 VIEW `vwmovimiento_cuenta` AS (select `a`.`id` AS `asientoId`,`ocp`.`codigoOrden` AS `codigo`,`ocp`.`fechaCreacion` AS `fecha`,`ocp`.`descripcion` AS `descripcion`,`pv`.`nombreProveedor` AS `para`,`ocp`.`total` AS `total`,`ta`.`nombreTipoAsiento` AS `metodoPago`,`pc`.`nombreCuenta` AS `nombreCuenta`,`pc`.`codigo` AS `codigoCuenta`,`pc`.`id` AS `PlanCuentaId`,concat(`p`.`nombre`,' ',`p`.`apellido`) AS `realizado`,if((`apc`.`rol` = 'haber'),`ocp`.`total`,0) AS `haber`,if((`apc`.`rol` = 'debe'),`ocp`.`total`,0) AS `debe` from (((((((`asiento` `a` join `tipoasiento` `ta` on((`ta`.`id` = `a`.`tipoasientoId`))) join `asientovplancuenta` `apc` on((`apc`.`asientoId` = `a`.`id`))) join `vplancuenta` `pc` on((`pc`.`id` = `apc`.`VPlanCuentaId`))) join `ordencompra` `ocp` on(((`ocp`.`asientoId` = `a`.`id`) and (`ocp`.`estadoId` = 2)))) join `vproveedor` `pv` on((`ocp`.`VProveedoreId` = `pv`.`id`))) join `usuario` `usu` on((`ocp`.`usuarioId` = `usu`.`usuarioId`))) join `persona` `p` on((`p`.`personaId` = `usu`.`personaId`)))) union all (select `a`.`id` AS `asientoId`,`v`.`codigoVenta` AS `codigo`,`v`.`fechaCreacion` AS `fecha`,`v`.`descripcion` AS `descripcion`,`vc`.`nombreCompletoCliente` AS `para`,`v`.`total` AS `total`,`ta`.`nombreTipoAsiento` AS `metodoPago`,`pc`.`nombreCuenta` AS `nombreCuenta`,`pc`.`codigo` AS `codigoCuenta`,`pc`.`id` AS `PlanCuentaId`,concat(`p`.`nombre`,' ',`p`.`apellido`) AS `realizado`,if((`apc`.`rol` = 'haber'),`v`.`total`,0) AS `haber`,if((`apc`.`rol` = 'debe'),`v`.`total`,0) AS `debe` from (((((((`asiento` `a` join `tipoasiento` `ta` on((`ta`.`id` = `a`.`tipoasientoId`))) join `asientovplancuenta` `apc` on((`apc`.`asientoId` = `a`.`id`))) join `vplancuenta` `pc` on((`pc`.`id` = `apc`.`VPlanCuentaId`))) join `venta` `v` on(((`v`.`asientoId` = `a`.`id`) and (`v`.`estadoId` = 2)))) join `vclientes` `vc` on((`v`.`VClienteId` = `vc`.`id`))) join `usuario` `usu` on((`v`.`usuarioId` = `usu`.`usuarioId`))) join `persona` `p` on((`p`.`personaId` = `usu`.`personaId`)))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1163,7 +1193,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_unicode_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vwmovimiento_generales` AS select `a`.`id` AS `asientoId`,`ocp`.`codigoOrden` AS `codigo`,`ocp`.`fechaCreacion` AS `fecha`,`ocp`.`descripcion` AS `descripcion`,`pv`.`nombreProveedor` AS `para`,`ocp`.`total` AS `total`,`ta`.`nombreTipoAsiento` AS `metodoPago`,concat(`p`.`nombre`,' ',`p`.`apellido`) AS `realizado` from (((((`asiento` `a` join `tipoasiento` `ta` on((`ta`.`id` = `a`.`tipoasientoId`))) join `ordencompra` `ocp` on(((`ocp`.`asientoId` = `a`.`id`) and (`ocp`.`estadoId` = 2)))) join `vproveedor` `pv` on((`ocp`.`VProveedoreId` = `pv`.`id`))) join `usuario` `usu` on((`ocp`.`usuarioId` = `usu`.`usuarioId`))) join `persona` `p` on((`p`.`personaId` = `usu`.`personaId`))) union all select `a`.`id` AS `asientoId`,`v`.`codigoVenta` AS `codigo`,`v`.`fechaCreacion` AS `fecha`,`v`.`descripcion` AS `descripcion`,`vc`.`nombreCompletoCliente` AS `para`,`v`.`total` AS `total`,`ta`.`nombreTipoAsiento` AS `metodoPago`,concat(`p`.`nombre`,' ',`p`.`apellido`) AS `realizado` from (((((`asiento` `a` join `tipoasiento` `ta` on((`ta`.`id` = `a`.`tipoasientoId`))) join `venta` `v` on(((`v`.`asientoId` = `a`.`id`) and (`v`.`estadoId` = 2)))) join `vclientes` `vc` on((`v`.`VClienteId` = `vc`.`id`))) join `usuario` `usu` on((`v`.`usuarioId` = `usu`.`usuarioId`))) join `persona` `p` on((`p`.`personaId` = `usu`.`personaId`))) */;
+/*!50001 VIEW `vwmovimiento_generales` AS (select `a`.`id` AS `asientoId`,`ocp`.`codigoOrden` AS `codigo`,`ocp`.`fechaCreacion` AS `fecha`,`ocp`.`descripcion` AS `descripcion`,`pv`.`nombreProveedor` AS `para`,`ocp`.`total` AS `total`,`ta`.`nombreTipoAsiento` AS `metodoPago`,concat(`p`.`nombre`,' ',`p`.`apellido`) AS `realizado` from (((((`asiento` `a` join `tipoasiento` `ta` on((`ta`.`id` = `a`.`tipoasientoId`))) join `ordencompra` `ocp` on(((`ocp`.`asientoId` = `a`.`id`) and (`ocp`.`estadoId` = 2)))) join `vproveedor` `pv` on((`ocp`.`VProveedoreId` = `pv`.`id`))) join `usuario` `usu` on((`ocp`.`usuarioId` = `usu`.`usuarioId`))) join `persona` `p` on((`p`.`personaId` = `usu`.`personaId`)))) union all (select `a`.`id` AS `asientoId`,`v`.`codigoVenta` AS `codigo`,`v`.`fechaCreacion` AS `fecha`,`v`.`descripcion` AS `descripcion`,`vc`.`nombreCompletoCliente` AS `para`,`v`.`total` AS `total`,`ta`.`nombreTipoAsiento` AS `metodoPago`,concat(`p`.`nombre`,' ',`p`.`apellido`) AS `realizado` from (((((`asiento` `a` join `tipoasiento` `ta` on((`ta`.`id` = `a`.`tipoasientoId`))) join `venta` `v` on(((`v`.`asientoId` = `a`.`id`) and (`v`.`estadoId` = 2)))) join `vclientes` `vc` on((`v`.`VClienteId` = `vc`.`id`))) join `usuario` `usu` on((`v`.`usuarioId` = `usu`.`usuarioId`))) join `persona` `p` on((`p`.`personaId` = `usu`.`personaId`)))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1177,4 +1207,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-05 20:50:56
+-- Dump completed on 2023-08-11 22:49:46

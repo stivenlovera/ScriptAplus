@@ -466,3 +466,15 @@ CREATE TABLE
     );
 
 ##despliege de en estado 
+
+
+DROP TABLE IF EXISTS movimientoAlmacen;
+CREATE TABLE `movimientoAlmacen` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `productoId` int(11) NOT NULL,
+  `entradaId` int(11) NOT NULL,
+  `salidaId` int(11) NOT NULL,
+  `fecha` datetime DEFAULT NULL,
+  `cantidad` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
